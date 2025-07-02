@@ -1,0 +1,3 @@
+Описание...
+
+![apple](https://github.com/user-attachments/assets/2388aa10-80f5-4f46-8880-29f0fc3d6dae)
