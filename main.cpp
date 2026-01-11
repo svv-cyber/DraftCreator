@@ -8,7 +8,15 @@
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
+
+    app.setApplicationName("Draft Creator");
+    app.setOrganizationName("YourCompany");
+
     MainWindow window;
+
+    window.setWindowTitle("Draft Creator");
+
     window.show();
     return app.exec();
 }
+
