@@ -11,7 +11,6 @@
 class ScribbleArea : public QWidget
 {
     Q_OBJECT
-
 public:
     ScribbleArea(QWidget *parent = nullptr);
 
@@ -19,6 +18,8 @@ public:
     bool saveImage(const QString &fileName, const char *fileFormat);
     void setPenColor(const QColor &newColor);
     void setPenWidth(int newWidth);
+    void setPenStyle(Qt::PenStyle newStyle);
+    Qt::PenStyle penStyle() const { return myPenStyle; }
 
     bool isModified() const { return modified; }
     QColor penColor() const { return myPenColor; }
@@ -26,7 +27,6 @@ public:
 
 public slots:
     void clearImage();
-    void print();
 
 protected:
     void mousePressEvent(QMouseEvent *event) override;
@@ -43,6 +43,7 @@ private:
     bool scribbling = false;
     int myPenWidth = 1;
     QColor myPenColor = Qt::blue;
+    Qt::PenStyle myPenStyle = Qt::SolidLine;
     QImage image;
     QPoint lastPoint;
 };
