@@ -7,11 +7,17 @@
 #include <QList>
 #include <QMainWindow>
 #include "scribblearea.h"
+#include <QToolBar>
+#include <QComboBox>
+#include <QSpinBox>
+#include <QLabel>
 
 class ScribbleArea;
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
+
 public:
     MainWindow(QWidget *parent = nullptr);
 
@@ -24,7 +30,6 @@ private slots:
     void penColor();
     void penWidth();
     void about();
-
 private:
     void createActions();
     void createMenus();
@@ -32,6 +37,7 @@ private:
     bool saveFile(const QByteArray &fileFormat);
 
     ScribbleArea *scribbleArea;
+
 
     QMenu *saveAsMenu;
     QMenu *fileMenu;
@@ -43,10 +49,13 @@ private:
     QAction *exitAct;
     QAction *penColorAct;
     QAction *penWidthAct;
-    QAction *printAct;
     QAction *clearScreenAct;
     QAction *aboutAct;
     QAction *aboutQtAct;
+
+
+    QComboBox *penStyleComboBox;
+    QSpinBox *penWidthSpinBox;
 };
 
 #endif
