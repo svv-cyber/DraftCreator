@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.5)
-project(ScribbleExample LANGUAGES CXX)
+
+# ИЗМЕНЕНО: ScribbleExample -> DraftCreator
+project(DraftCreator LANGUAGES CXX)
 
 # Настройка стандарта C++
 set(CMAKE_CXX_STANDARD 17)
@@ -15,14 +17,16 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 
 # Добавление исполняемого файла
-add_executable(ScribbleExample
+# ИЗМЕНЕНО: ScribbleExample -> DraftCreator
+add_executable(DraftCreator
     main.cpp
     mainwindow.cpp
     mainwindow.h
     scribblearea.cpp
     scribblearea.h
-    mainwindow.ui  # Если есть .ui-файл
+    # Если есть .ui-файл
 )
 
 # Подключение Qt-модулей
-target_link_libraries(ScribbleExample PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+# ИЗМЕНЕНО: ScribbleExample -> DraftCreator
+target_link_libraries(DraftCreator PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
