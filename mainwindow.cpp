@@ -34,13 +34,6 @@ MainWindow::MainWindow(QWidget *parent)
     QFrame *mainFrame = new QFrame();
     mainFrame->setFrameShape(QFrame::Box);
     mainFrame->setFrameShadow(QFrame::Plain);
-    mainFrame->setStyleSheet(
-        "QFrame { "
-        "    border: 2px solid #999; "
-        "    border-radius: 0px; "
-        "    background-color: #f5f5f5; "
-        "}"
-    );
 
     QHBoxLayout *mainLayout = new QHBoxLayout(mainFrame);
 
@@ -57,211 +50,82 @@ MainWindow::MainWindow(QWidget *parent)
     QFrame *rightFrame = new QFrame();
     rightFrame->setFrameShape(QFrame::Box);
     rightFrame->setFrameShadow(QFrame::Plain);
-    rightFrame->setStyleSheet(
-        "QFrame { "
-        "    border: 1px solid #bbb; "
-        "    border-radius: 0px; "
-        "    background-color: #f0f0f0; "
-        "}"
-    );
 
     QVBoxLayout *rightPanelLayout = new QVBoxLayout(rightFrame);
 
-    rightPanelLayout->addSpacing(10);
-
     QLabel *colorLabel = new QLabel(tr("Цвет"));
-    colorLabel->setStyleSheet(
-        "QLabel { "
-        "    font-weight: bold; "
-        "    font-size: 14px; "
-        "    padding: 5px; "
-        "    padding-left: 10px; "
-        "}"
-    );
     rightPanelLayout->addWidget(colorLabel);
 
     QWidget *colorWidget = new QWidget();
-    colorWidget->setStyleSheet(
-        "QWidget { "
-        "    background-color: white; "
-        "    border: 1px solid #ccc; "
-        "    border-radius: 3px; "
-        "    margin: 0px 10px 10px 10px; "
-        "}"
-    );
 
     QHBoxLayout *colorInnerLayout = new QHBoxLayout(colorWidget);
-    colorInnerLayout->setContentsMargins(10, 5, 10, 5);
+    colorInnerLayout->setContentsMargins(0, 0, 0, 0);
 
     // Кнопка выбора цвета
-    QPushButton *colorButton = new QPushButton(tr("Выбрать цвет"));
-    colorButton->setStyleSheet(
-        "QPushButton { "
-        "    border: 1px solid #aaa; "
-        "    background-color: #f0f0f0; "
-        "    padding: 5px 10px; "
-        "    font-size: 13px; "
-        "}"
-        "QPushButton:hover { "
-        "    background-color: #e0e0e0; "
-        "}"
-    );
-
+    QPushButton *colorButton = new QPushButton(tr("Выбрать цвет..."));
     QLabel *colorPreview = new QLabel();
     colorPreview->setFixedSize(30, 20);
     colorPreview->setStyleSheet(
-        QString("QLabel { "
-                "    background-color: %1; "
-                "    border: 1px solid #888; "
-                "    border-radius: 2px; "
-                "}").arg(scribbleArea->penColor().name())
+        QString("background-color: %1; border: 1px solid #888; border-radius: 2px;").arg(scribbleArea->penColor().name())
     );
 
     colorInnerLayout->addWidget(colorButton);
-    colorInnerLayout->addSpacing(10);
     colorInnerLayout->addWidget(colorPreview);
-    colorInnerLayout->addStretch();
 
     rightPanelLayout->addWidget(colorWidget);
-    rightPanelLayout->addSpacing(20);
 
     QLabel *thicknessLabel = new QLabel(tr("Толщина"));
-    thicknessLabel->setStyleSheet(
-        "QLabel { "
-        "    font-weight: bold; "
-        "    font-size: 14px; "
-        "    padding: 5px; "
-        "    padding-left: 10px; "
-        "}"
-    );
     rightPanelLayout->addWidget(thicknessLabel);
 
     QWidget *thicknessWidget = new QWidget();
-    thicknessWidget->setStyleSheet(
-        "QWidget { "
-        "    background-color: white; "
-        "    border: 1px solid #ccc; "
-        "    border-radius: 3px; "
-        "    margin: 0px 10px 10px 10px; "
-        "}"
-    );
-
     QHBoxLayout *thicknessInnerLayout = new QHBoxLayout(thicknessWidget);
-    thicknessInnerLayout->setContentsMargins(10, 5, 10, 5);
+    thicknessInnerLayout->setContentsMargins(0, 0, 0, 0);
 
     penWidthSpinBox = new QSpinBox();
     penWidthSpinBox->setRange(1, 20);
     penWidthSpinBox->setValue(1);
     penWidthSpinBox->setSuffix(" px");
     penWidthSpinBox->setButtonSymbols(QSpinBox::PlusMinus);
-    penWidthSpinBox->setStyleSheet(
-        "QSpinBox { "
-        "    border: none; "
-        "    background-color: transparent; "
-        "    font-size: 13px; "
-        "    min-width: 60px; "
-        "}"
-        "QSpinBox::up-button, QSpinBox::down-button { "
-        "    width: 15px; "
-        "    border: 1px solid #aaa; "
-        "    background-color: #f0f0f0; "
-        "}"
-    );
     thicknessInnerLayout->addWidget(penWidthSpinBox);
-    thicknessInnerLayout->addStretch();
 
     rightPanelLayout->addWidget(thicknessWidget);
 
-    rightPanelLayout->addSpacing(20);
-
     QLabel *lineTypeLabel = new QLabel(tr("Тип линии"));
-    lineTypeLabel->setStyleSheet(
-        "QLabel { "
-        "    font-weight: bold; "
-        "    font-size: 14px; "
-        "    padding: 5px; "
-        "    padding-left: 10px; "
-        "}"
-    );
     rightPanelLayout->addWidget(lineTypeLabel);
 
     QWidget *lineTypeWidget = new QWidget();
-    lineTypeWidget->setStyleSheet(
-        "QWidget { "
-        "    background-color: white; "
-        "    border: 1px solid #ccc; "
-        "    border-radius: 3px; "
-        "    margin: 0px 10px 10px 10px; "
-        "}"
-    );
 
     QHBoxLayout *lineTypeInnerLayout = new QHBoxLayout(lineTypeWidget);
-    lineTypeInnerLayout->setContentsMargins(10, 5, 10, 5);
+    lineTypeInnerLayout->setContentsMargins(0, 0, 0, 0);
 
     penStyleComboBox = new QComboBox();
     penStyleComboBox->addItem(tr("Сплошная"), static_cast<int>(Qt::SolidLine));
     penStyleComboBox->addItem(tr("Пунктир"), static_cast<int>(Qt::DashLine));
     penStyleComboBox->addItem(tr("Точечная"), static_cast<int>(Qt::DotLine));
     penStyleComboBox->addItem(tr("Штрихпунктир"), static_cast<int>(Qt::DashDotLine));
-    penStyleComboBox->setStyleSheet(
-        "QComboBox { "
-        "    border: none; "
-        "    background-color: transparent; "
-        "    font-size: 13px; "
-        "    min-width: 120px; "
-        "}"
-        "QComboBox::drop-down { "
-        "    border: 1px solid #aaa; "
-        "    background-color: #f0f0f0; "
-        "    width: 20px; "
-        "}"
-    );
     lineTypeInnerLayout->addWidget(penStyleComboBox);
-    lineTypeInnerLayout->addStretch();
 
     rightPanelLayout->addWidget(lineTypeWidget);
-
-    rightPanelLayout->addSpacing(25);
 
     QPushButton *openButton = new QPushButton(tr("Открыть"));
     QPushButton *saveButton = new QPushButton(tr("Сохранить"));
     QPushButton *clearButton = new QPushButton(tr("Очистить"));
     QPushButton *exitButton = new QPushButton(tr("Выход"));
 
-    QString mainButtonStyle =
-        "QPushButton { "
-        "    padding: 10px 25px; "
-        "    border: 1px solid #888; "
-        "    background-color: #e0e0e0; "
-        "    border-radius: 0px; "
-        "    font-weight: bold; "
-        "    font-size: 14px; "
-        "}"
-        "QPushButton:hover { "
-        "    background-color: #d0d0d0; "
-        "}";
-
-    openButton->setStyleSheet(mainButtonStyle);
-    saveButton->setStyleSheet(mainButtonStyle);
-    clearButton->setStyleSheet(mainButtonStyle);
-    exitButton->setStyleSheet(mainButtonStyle);
-
     QHBoxLayout *topButtonsLayout = new QHBoxLayout;
-    topButtonsLayout->addStretch();
+    topButtonsLayout->setContentsMargins(0, 0, 0, 0);
     topButtonsLayout->addWidget(openButton);
     topButtonsLayout->addWidget(saveButton);
-    topButtonsLayout->addStretch();
 
     QHBoxLayout *bottomButtonsLayout = new QHBoxLayout;
-    bottomButtonsLayout->addStretch();
+    topButtonsLayout->setContentsMargins(0, 0, 0, 0);
     bottomButtonsLayout->addWidget(clearButton);
     bottomButtonsLayout->addWidget(exitButton);
-    bottomButtonsLayout->addStretch();
 
-    rightPanelLayout->addLayout(topButtonsLayout);
-    rightPanelLayout->addSpacing(10);
-    rightPanelLayout->addLayout(bottomButtonsLayout);
     rightPanelLayout->addStretch();
+    rightPanelLayout->addLayout(topButtonsLayout);
+
+    rightPanelLayout->addLayout(bottomButtonsLayout);
 
     mainLayout->addWidget(rightFrame, 2);
 
